@@ -24,8 +24,8 @@ window.addEventListener('load', ()=>{
         imprimirData()
     } catch (e){
         console.log(e)
-        localStorage.setItem('items', [ ])
-        localStorage.setItem('itemComprados', [])
+        localStorage.setItem('items', items)
+        localStorage.setItem('itemComprados', itemComprados)
     }
 })
 
