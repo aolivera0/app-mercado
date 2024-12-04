@@ -14,20 +14,22 @@ const warning = document.querySelector("#warning")
 const comprados = document.querySelector("#comprados")
 const tableCompradosBody = document.querySelector("#tableCompradosBody")
 const totalGastado = document.querySelector("#totalGastado")
+const buscador = document.querySelector("#buscador")
 
-window.addEventListener('load', ()=>{
-    items = []
-    itemComprados = []
-    try {
-        items = JSON.parse(localStorage.getItem('items'))
-        itemComprados = JSON.parse(localStorage.getItem('itemComprados'))
-        imprimirData()
-    } catch (e){
-        console.log(e)
-        localStorage.setItem('items', items)
-        localStorage.setItem('itemComprados', itemComprados)
-    }
-})
+let items = []
+let itemComprados = []
+
+try {
+  items = JSON.parse(localStorage.getItem('items'))
+  itemComprados = JSON.parse(localStorage.getItem('itemComprados'))
+} catch (e) {
+  let itemsIniciales = []
+  let itemCompradosIniciales = []
+  localStorage.setItem('items', JSON.stringify(itemsIniciales))
+  localStorage.setItem('itemComprados', JSON.stringify(itemCompradosIniciales))
+}
+
+imprimirData(items)
 
 function handleAgregar(e) {
   e.preventDefault()
@@ -66,7 +68,7 @@ function handleAgregar(e) {
   }
 
   updateData()
-  imprimirData()
+  imprimirData(items)
   resetFields()
 }
 
@@ -88,23 +90,19 @@ function handleCheckbox(e) {
       }
 
       itemComprados = itemComprados.filter((item) => item.adquirido)
-      console.log(itemComprados)
-      console.log(items)
     }
   })
 
-  //console.log(e.target.id)
-  //console.log(items)
   localStorage.setItem('items', JSON.stringify(items))
   localStorage.setItem('itemComprados', JSON.stringify(itemComprados))
-  imprimirData()
+  imprimirData(items)
 }
 
-function imprimirData() {
+function imprimirData(arrAimprimir) {
   let valorTotalGastado = 0
   tableBody.innerHTML = ""
   tableCompradosBody.innerHTML = ""
-  items.forEach(item => {
+  arrAimprimir.forEach(item => {
     tableBody.innerHTML += `<tr>
           <td class="centered"> <input type="checkbox" id="${item.nombre}" ${item.adquirido ? "checked" : ""}/> </td>
           <td>${item.nombre}</td>
@@ -164,7 +162,7 @@ function handleButtonEliminar(e) {
   items = items.filter(itemIterado => itemIterado.nombre != item.value)
 
   updateData()
-  imprimirData()
+  imprimirData(items)
   resetFields()
 }
 function handleButtonLimpiarTodo() {
@@ -176,7 +174,7 @@ function handleButtonLimpiarTodo() {
   items = JSON.parse(localStorage.getItem('items'))
   itemComprados = JSON.parse(localStorage.getItem('itemComprados'))
 
-  imprimirData()
+  imprimirData(items)
   resetFields()
 }
 function handelButtonValoresIniciales() {
@@ -227,7 +225,7 @@ function handelButtonValoresIniciales() {
   items = JSON.parse(localStorage.getItem('items'))
   itemComprados = JSON.parse(localStorage.getItem('itemComprados'))
 
-  imprimirData()
+  imprimirData(items)
   resetFields()
 }
 
@@ -243,8 +241,15 @@ function resetFields() {
   btnEliminar.classList.add("hidden")
 }
 
+function handleBuscar(e){
+  let itemsFiltrados = items.filter((item)=>item.nombre.toLowerCase().includes(e.target.value.toLowerCase()))
+ 
+  imprimirData(itemsFiltrados)
+}
+
 btnAgregar.addEventListener('click', (e) => { handleAgregar(e) })
 btnCancelar.addEventListener('click', (e) => handleButtonCancelar(e))
 btnEliminar.addEventListener('click', (e) => handleButtonEliminar(e))
 btnLimpiarTodo.addEventListener('click', (e) => handleButtonLimpiarTodo(e))
 btnReiniciar.addEventListener('click', (e) => handelButtonValoresIniciales(e))
+buscador.addEventListener('keyup', (e)=>handleBuscar(e))

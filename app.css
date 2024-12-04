@@ -6,33 +6,33 @@
     --secondary-grey: #8e9091;
     --primary-green: #3cbc9a;
     --third-bg-color: #222224;
-}
-
-html {
+  }
+  
+  html {
     box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
+  }
+  
+  *,
+  *:before,
+  *:after {
     box-sizing: inherit;
-}
-
-body {
+  }
+  
+  body {
     background-color: var(--black);
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.hidden {
+  }
+  
+  .hidden {
     display: none;
-}
-
-section {
+  }
+  
+  section {
     margin-bottom: 100px;
-}
-
-main {
+  }
+  
+  main {
     display: flex;
     flex-direction: column;
     max-width: 900px;
@@ -40,24 +40,24 @@ main {
     margin: 0 auto;
     padding: 42px;
     background-color: var(--black);
-}
-
-h1,
-h2 {
+  }
+  
+  h1,
+  h2 {
     font-size: 18px;
     text-align: left;
     margin-bottom: 22px;
     width: fit-content;
     font-weight: 400;
-}
-
-h2 {
+  }
+  
+  h2 {
     font-weight: 600;
     font-size: 22px;
-}
-
-
-.form__inputs {
+  }
+  
+  
+  .form__inputs {
     width: 340px;
     margin: 0 auto;
     background-color: var(--main-bg-color);
@@ -65,43 +65,43 @@ h2 {
     padding-block: 12px;
     padding-inline: 24px;
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
-}
-
-.form__alone {
+  }
+  
+  .form__alone {
     display: flex;
     flex-direction: column;
     gap: 4px;
     justify-content: space-between;
     margin-bottom: 10px;
-
+  
     &:nth-child(6) {
-        margin-bottom: 24px;
+      margin-bottom: 24px;
     }
-}
-
-.form__various {
+  }
+  
+  .form__various {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 12px;
     margin-block-end: 10px;
-
+  
     &>div {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex-grow: 1;
     }
-}
-
-td,
-th {
+  }
+  
+  td,
+  th {
     padding-inline: 18px;
     padding-block: 4px;
     color: var(--secondary-grey);
-}
-
-table {
+  }
+  
+  table {
     text-align: left;
     border-radius: 5px;
     outline: 2px solid var(--main-bg-color);
@@ -109,37 +109,37 @@ table {
     min-width: 600px;
     margin: 0 auto;
     border-collapse: collapse;
-}
-
-th {
+  }
+  
+  th {
     font-size: 12px;
     background-color: var(--third-bg-color);
-}
-
-tr {
+  }
+  
+  tr {
     font-size: 14px;
     height: 54px;
-}
-
-tbody {
+  }
+  
+  tbody {
     color: var(--white);
-}
-
-tbody tr:nth-child(even) {
+  }
+  
+  tbody tr:nth-child(even) {
     background-color: var(--third-bg-color);
-}
-
-.resultados>tr td {
+  }
+  
+  .resultados > tr td{
     font-weight: bold;
     font-size: 18px;
     color: var(--white);
-}
-
-.centered {
+  }
+  
+  .centered {
     text-align: center;
-}
-
-.btn {
+  }
+  
+  .btn {
     border: 2px solid transparent;
     border-radius: 3px;
     opacity: 90%;
@@ -147,53 +147,53 @@ tbody tr:nth-child(even) {
     padding-block: 9px;
     padding-inline: 16px;
     font-weight: 500;
-}
-
-.btn:hover {
+  }
+  
+  .btn:hover {
     opacity: 100%;
     transition: all 250ms ease-out;
     scale: 1.04;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     cursor: pointer;
-}
-
-.botones-grupo {
+  }
+  
+  .botones-grupo {
     display: flex;
     justify-content: space-between;
     margin-block: 20px 14px;
-
-}
-
-.btn-editar {
+  
+  }
+  
+  .btn-editar {
     background-color: transparent;
-}
-
-.btn-agregar {
+  }
+  
+  .btn-agregar {
     background-color: #3cbc9a;
     color: #f0f0f0;
-}
-
-.btn-eliminar {
+  }
+  
+  .btn-eliminar {
     background-color: #df211ed6;
     color: #f0f0f0;
-}
-
-.btn-cancelar {
+  }
+  
+  .btn-cancelar {
     background-color: #3cbc9a0f;
     border: 2px solid #3cbc9a;
     color: #3cbc9a;
-}
-
-.msg-error {
+  }
+  
+  .msg-error {
     background-color: rgba(246, 29, 29, 0.709);
     padding-block: 12px;
     padding-inline: 22px;
     color: #f0f0f0;
     font-size: 14px;
-}
-
-input,
-select {
+  }
+  
+  input,
+  select {
     padding-block: 8px;
     padding-inline: 6px;
     border: none;
@@ -203,58 +203,58 @@ select {
     font-size: 12px;
     width: 100%;
     text-align: left;
-}
-
-select {
+  }
+  
+  select {
     /* color: var(--white); */
-}
-
-select[value=""] {
+  }
+  
+  select[value=""] {
     color: green;
-}
-
-label {
+  }
+  
+  label {
     color: var(--secondary-grey);
     font-size: 12px;
-}
-
-input[type="checkbox"] {
+  }
+  
+  input[type="checkbox"] {
     background-color: green;
-}
-
-input[disabled] {
+  }
+  
+  input[disabled] {
     color: var(--secondary-grey);
     cursor: not-allowed;
-}
-
-/* .almacen {
-text-align: center;
-border: 1px solid #d3c9bed2;
-color: #d3c9bed2;
-background-color: #d3c9be0b;
-border-radius: 16px;
-padding: 6px;
-font-size: 10px;
-display: block;
-width: min-content;
-font-weight: 500;
-margin: 0 auto;
-}
-
-.almacen__ara {
-background-color: #f68d2416;
-border: 1px solid #f68d24ed;
-color: #f68d24ed;
-}
-
-.almacen__d1,
-.almacen__makro {
-background-color: #ff3f0016;
-border: 1px solid #ff3f00;
-color: #ff7b4f;
-} */
-
-.label {
+  }
+  
+  /* .almacen {
+    text-align: center;
+    border: 1px solid #d3c9bed2;
+    color: #d3c9bed2;
+    background-color: #d3c9be0b;
+    border-radius: 16px;
+    padding: 6px;
+    font-size: 10px;
+    display: block;
+    width: min-content;
+    font-weight: 500;
+    margin: 0 auto;
+  }
+  
+  .almacen__ara {
+    background-color: #f68d2416;
+    border: 1px solid #f68d24ed;
+    color: #f68d24ed;
+  }
+  
+  .almacen__d1,
+  .almacen__makro {
+    background-color: #ff3f0016;
+    border: 1px solid #ff3f00;
+    color: #ff7b4f;
+  } */
+  
+  .label {
     display: inline-block;
     text-align: center;
     color: var(--white);
@@ -264,27 +264,27 @@ color: #ff7b4f;
     font-size: 12px;
     border: 1px solid;
     border-radius: 2px;
-}
-
-.label__importante {
+  }
+  
+  .label__importante {
     background-color: #df211e6f;
     border-color: #df211ed6;
-}
-
-.label__media {
+  }
+  
+  .label__media {
     background-color: #dd78046f;
     border-color: #dd7804d6;
     color: #f1f1f1;
-}
-
-.label__baja {
+  }
+  
+  .label__baja {
     background-color: #CCA43B6f;
     border-color: #CCA43Bd6;
     color: #f1f1f1;
-}
-
-
-.categoria {
+  }
+  
+  
+  .categoria {
     display: block;
     text-align: center;
     color: #cfcabd;
@@ -294,31 +294,43 @@ color: #ff7b4f;
     padding-block: 2px;
     font-size: 12px;
     font-weight: bold;
-}
-
-.categoria__aseo {
+  }
+  
+  .categoria__aseo {
     color: #B18FCF;
     background-color: #b18fcf30;
-}
-
-.categoria__nevera {
+  }
+  
+  .categoria__nevera {
     color: #01BAEF;
     background-color: #01bbef30;
-}
-
-.categoria__alacena {
+  }
+  
+  .categoria__alacena {
     color: #CCA43B;
     background-color: #CCA43B30;
-}
-
-.categoria__verduras {
+  }
+  
+  .categoria__verduras {
     color: #20BF55;
     background-color: #20BF5530;
-}
-
-.totales {
+  }
+  
+  .totales {
     width: min-content;
     margin: 0 auto;
     margin-block-start: 45px;
     margin-block-end: 100px;
-}
+  }
+  
+  .buscador {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  #buscador {
+    padding-inline: 10px;
+  }

@@ -1,121 +1,126 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Mercado</title>
-    <link rel="stylesheet" href="app.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Mercado</title>
+  <link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <main>
-        <form action="" class="form form__inputs">
-          <h1>Agrega un producto</h1>
-      
-          <div class="form__alone">
-            <label for="item">Item</label>
-            <input type="text" name="" id="item">
-          </div>
-      
-          <div class="form__various">
-            <div>
-              <label for="precio" >Precio</label>
-              <input type="number" name="" id="precio"> <span></span>
-            </div>
-      
-            <div>
-              <label for="categoria">Categoría</label>
-              <select required name="categoria" id="categoria">
-                  <option hidden value="">--Seleccione--</option>
-                  <option value="Nevera">Nevera</option>
-                  <option value="Aseo">Aseo</option>
-                  <option value="Alacena">Alacena</option>
-                  <option value="Verduras">Verduras</option>
-              </select>
-            </div>
-          </div>
-      
-          <div class="form__various">
-            <div>
-              <label for="">Almacén</label>
-              <select required name="almacen" id="almacen">
-                  <option hidden value="" class="opaco">--Seleccione--</option>
-                  <option value="Ara">Ara</option>
-                  <option value="D1">D1</option>
-                  <option value="Makro">Makro</option>
-                  <option value="Otro">Otro</option>
-                </select>
-            </div>
-      
-            <div>
-              <label for="prioridad">Prioridad</label>
-              <select required name="prioridad" id="prioridad">
-                  <option hidden value="">--Seleccione--</option>
-                  <option value="Importante">Importante</option>
-                  <option value="Media">Media</option>
-                  <option value="Baja">Baja</option>
-              </select>
-            </div>
-          </div>
-      
-          <p id="warning" class="msg msg-error hidden"></p>
-      
-          <div class="botones-grupo">
-            <button type="submit" id="btn-agregar" class="btn btn-agregar">Agregar</button>
-            <button type="submit" id="btn-cancelar" class="btn btn-cancelar hidden">Cancelar</button>
-            <button type="submit" id="btn-eliminar" class="btn btn-eliminar hidden">Eliminar</button>
-          </div>
-        </form>
-      
-        <div id="data">
-          <h2>Lista de productos</h2>
-          <table class="tabla__lista-productos">
-            <thead>
-              <tr>
-                <th class="centered">Comprado</th>
-                <th >Item</th>
-                <th>Precio</th>
-                <th>Categoría</th>
-                <th>Almacén</th>
-                <th>Prioridad</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="tableBody">
-      
-            </tbody>
-          </table>
+  <main>
+    <form action="" class="form form__inputs">
+      <h1>Agrega un producto</h1>
+
+      <div class="form__alone">
+        <label for="item">Item</label>
+        <input type="text" name="" id="item">
+      </div>
+
+      <div class="form__various">
+        <div>
+          <label for="precio">Precio</label>
+          <input type="number" name="" id="precio"> <span></span>
         </div>
-      
-        <div class="botones-reinicio">
-          <button class="btn btn-eliminar" id="btn-limpiar-todo">Limpiar todo</button>
-          <button class="btn" id="btn-reiniciar">Valores iniciales</button>
+
+        <div>
+          <label for="categoria">Categoría</label>
+          <select required name="categoria" id="categoria">
+            <option hidden value="">--Seleccione--</option>
+            <option value="Nevera">Nevera</option>
+            <option value="Aseo">Aseo</option>
+            <option value="Alacena">Alacena</option>
+            <option value="Verduras">Verduras</option>
+          </select>
         </div>
-      </main>
-      
-      <section class="totales">
-        <h2>Total gastado</h2>
-        <div id="comprados">
-          <table class="table table__comprados">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Precio</th>
-                <th>Categoría</th>
-                <th>Almacén</th>
-                <th>Prioridad</th>
-              </tr>
-            </thead>
-            <tbody id="tableCompradosBody">
-      
-            </tbody>
-            <tfoot class="resultados">
-              <td> Total: </td>
-              <td><span id="totalGastado"></span>
-              </td>
-            </tfoot>
-          </table>
+      </div>
+
+      <div class="form__various">
+        <div>
+          <label for="">Almacén</label>
+          <select required name="almacen" id="almacen">
+            <option hidden value="" class="opaco">--Seleccione--</option>
+            <option value="Ara">Ara</option>
+            <option value="D1">D1</option>
+            <option value="Makro">Makro</option>
+            <option value="Otro">Otro</option>
+          </select>
         </div>
-      </section>
-      <script src="main.js"></script>
+
+        <div>
+          <label for="prioridad">Prioridad</label>
+          <select required name="prioridad" id="prioridad">
+            <option hidden value="">--Seleccione--</option>
+            <option value="Importante">Importante</option>
+            <option value="Media">Media</option>
+            <option value="Baja">Baja</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="warning" class="msg msg-error hidden"></p>
+
+      <div class="botones-grupo">
+        <button type="submit" id="btn-agregar" class="btn btn-agregar">Agregar</button>
+        <button type="submit" id="btn-cancelar" class="btn btn-cancelar hidden">Cancelar</button>
+        <button type="submit" id="btn-eliminar" class="btn btn-eliminar hidden">Eliminar</button>
+      </div>
+    </form>
+
+    <div id="data">
+      <div class="buscador">
+        <h2>Lista de productos</h2>
+        <div>
+          <input id="buscador" type="text" placeholder="Buscar un item">
+        </div>
+      </div>
+      <table class="tabla__lista-productos">
+        <thead>
+          <tr>
+            <th class="centered">Comprado</th>
+            <th>Item</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Almacén</th>
+            <th>Prioridad \</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="botones-reinicio">
+      <button class="btn btn-eliminar" id="btn-limpiar-todo">Limpiar todo</button>
+      <button class="btn" id="btn-reiniciar">Valores iniciales</button>
+    </div>
+  </main>
+
+  <section class="totales">
+    <h2>Total gastado</h2>
+    <div id="comprados">
+      <table class="table table__comprados">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Almacén</th>
+            <th>Prioridad</th>
+          </tr>
+        </thead>
+        <tbody id="tableCompradosBody">
+
+        </tbody>
+        <tfoot class="resultados">
+          <td> Total: </td>
+          <td><span id="totalGastado"></span>
+          </td>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+  <script src="main.js"></script>
 </body>
 </html>
