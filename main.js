@@ -1,63 +1,64 @@
-const btnAgregar = document.querySelector("#btn-agregar")
-const btnCancelar = document.querySelector("#btn-cancelar")
-const btnEliminar = document.querySelector("#btn-eliminar")
-const btnLimpiarTodo = document.querySelector("#btn-limpiar-todo")
-const btnReiniciar = document.querySelector("#btn-reiniciar")
-const item = document.querySelector("#item")
-const precio = document.querySelector("#precio")
-const categoria = document.querySelector("#categoria")
-const almacen = document.querySelector("#almacen")
-const prioridad = document.querySelector("#prioridad")
-const data = document.querySelector("#data")
-const tableBody = document.querySelector("#tableBody")
-const warning = document.querySelector("#warning")
-const comprados = document.querySelector("#comprados")
-const tableCompradosBody = document.querySelector("#tableCompradosBody")
-const totalGastado = document.querySelector("#totalGastado")
-const buscador = document.querySelector("#buscador")
+const $btnAgregar = document.querySelector("#btn-agregar")
+const $btnCancelar = document.querySelector("#btn-cancelar")
+const $btnEliminar = document.querySelector("#btn-eliminar")
+const $btnLimpiarTodo = document.querySelector("#btn-limpiar-todo")
+const $btnReiniciar = document.querySelector("#btn-reiniciar")
+const $item = document.querySelector("#item")
+const $precio = document.querySelector("#precio")
+const $categoria = document.querySelector("#categoria")
+const $almacen = document.querySelector("#almacen")
+const $prioridad = document.querySelector("#prioridad")
+const $data = document.querySelector("#data")
+const $tableBody = document.querySelector("#tableBody")
+const $warning = document.querySelector("#warning")
+const $comprados = document.querySelector("#comprados")
+const $tableCompradosBody = document.querySelector("#tableCompradosBody")
+const $totalGastado = document.querySelector("#totalGastado")
+const $buscador = document.querySelector("#buscador")
+const $prioridadLista = document.querySelector("#prioridad-lista")
+const $filtroPrecio = document.querySelector("#filtro-precio")
+const $filtros = document.querySelectorAll("#filtros th")
 
 let items = []
 let itemComprados = []
-
-try {
-  items = JSON.parse(localStorage.getItem('items'))
-  itemComprados = JSON.parse(localStorage.getItem('itemComprados'))
-} catch (e) {
-  let itemsIniciales = []
-  let itemCompradosIniciales = []
-  localStorage.setItem('items', JSON.stringify(itemsIniciales))
-  localStorage.setItem('itemComprados', JSON.stringify(itemCompradosIniciales))
-}
-
-imprimirData(items)
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    items = JSON.parse(localStorage.getItem('items'))
+    itemComprados = JSON.parse(localStorage.getItem('itemComprados'))
+    imprimirData(items)
+  } catch (e) {
+    localStorage.setItem('items', JSON.stringify(items))
+    localStorage.setItem('itemComprados', JSON.stringify(itemComprados))
+  }
+})
 
 function handleAgregar(e) {
   e.preventDefault()
 
-  if (item.value == "" || precio.value == "" || categoria.value == "" || almacen.value == "" || prioridad.value == "") {
-    warning.innerText = "Por favor complete todos los campos"
-    warning.classList.remove("hidden")
+  if ($item.value == "" || $precio.value == "" || $categoria.value == "" || $almacen.value == "" || $prioridad.value == "") {
+    $warning.innerText = "Por favor complete todos los campos"
+    $warning.classList.remove("hidden")
     setTimeout(() => {
-      warning.innerText = " "
-      warning.classList.add("hidden")
+      $warning.innerText = " "
+      $warning.classList.add("hidden")
     }, 2500)
 
     return
   }
 
-  warning.innerText = " "
-  warning.classList.add("hidden")
+  $warning.innerText = " "
+  $warning.classList.add("hidden")
 
   const nuevoItem = {
-    nombre: item.value,
-    precio: parseInt(precio.value),
-    categoria: categoria.value,
-    almacen: almacen.value,
-    prioridad: prioridad.value,
+    item: $item.value,
+    precio: parseInt($precio.value),
+    categoria: $categoria.value,
+    almacen: $almacen.value,
+    prioridad: $prioridad.value,
     adquirido: false,
   }
 
-  const position = items.findIndex(item => item.nombre == nuevoItem.nombre)
+  const position = items.findIndex(item => item.item == nuevoItem.item)
   if (position < 0) {
     items.push(nuevoItem)
   } else {
@@ -80,12 +81,12 @@ function updateData() {
 
 function handleCheckbox(e) {
   items.forEach((item) => {
-    if (item.nombre == e.target.id) {
+    if (item.item == e.target.id) {
       item.adquirido = !item.adquirido
       if (!itemComprados.includes(item) && item.adquirido) {
         itemComprados.push(item)
       } else {
-        let elementoParaBorrar = itemComprados.findIndex(itemComprado => item.nombre == itemComprado.nombre)
+        let elementoParaBorrar = itemComprados.findIndex(itemComprado => item.item == itemComprado.item)
         itemComprados[elementoParaBorrar].adquirido = false
       }
 
@@ -98,36 +99,31 @@ function handleCheckbox(e) {
   imprimirData(items)
 }
 
-function imprimirData(arrAimprimir) {
-  let valorTotalGastado = 0
-  tableBody.innerHTML = ""
-  tableCompradosBody.innerHTML = ""
-  arrAimprimir.forEach(item => {
-    tableBody.innerHTML += `<tr>
-          <td class="centered"> <input type="checkbox" id="${item.nombre}" ${item.adquirido ? "checked" : ""}/> </td>
-          <td>${item.nombre}</td>
+function imprimirListaProductos(items) {
+  $tableBody.innerHTML = ""
+  items.forEach(item => {
+    $tableBody.innerHTML += `<tr>
+          <td class="centered"> <input type="checkbox" id="${item.item}" ${item.adquirido ? "checked" : ""}/> </td>
+          <td>${item.item}</td>
           <td class="precio">${item.precio.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: "0" })}</td>
           <td> <span class="categoria categoria__${item.categoria.toLowerCase()}">${item.categoria}</span></td>
           <td> <span class="almacen almacen__${item.almacen.toLowerCase()}">${item.almacen}</span></td>
           <td> <span class="label label__${item.prioridad.toLowerCase()}">${item.prioridad}</span></td>
-          <td> <button class="btn btn-editar" id="${item.nombre}" style="opacity:0.50">⚙️</button></td>
+          <td> <button class="btn btn-editar" id="${item.item}" style="opacity:0.50">⚙️</button></td>
         </tr>`
   })
-  const checkboxes = tableBody.querySelectorAll("input[type='checkbox']")
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', (e) => handleCheckbox(e))
-  })
+}
 
-  const botonesEditar = tableBody.querySelectorAll("td button")
-  botonesEditar.forEach(boton => {
-    boton.addEventListener('click', (e) => handleButtonEditar(e))
-  })
+function imprimirTablaGastos(itemComprados) {
+  $tableCompradosBody.innerHTML = ""
+  $totalGastado.innerHTML = ""
 
-  totalGastado.innerHTML = ""
+  let valorTotalGastado = 0
+
   itemComprados.forEach(item => {
     valorTotalGastado += item.precio
-    tableCompradosBody.innerHTML += `<tr>
-          <td>${item.nombre}</td>
+    $tableCompradosBody.innerHTML += `<tr>
+          <td>${item.item}</td>
           <td>${item.precio.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: "0" })}</td>
           <td> <span class="categoria categoria__${item.categoria.toLowerCase()}">${item.categoria}</span></td>
           <td> <span class="almacen almacen__${item.almacen.toLowerCase()}">${item.almacen}</span></td>
@@ -135,21 +131,39 @@ function imprimirData(arrAimprimir) {
         </tr>`
   })
 
-  totalGastado.innerHTML = valorTotalGastado.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: "0" })
+  $totalGastado.innerHTML = valorTotalGastado.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: "0" })
+}
+
+function agregarListenersAbotones() {
+  const checkboxes = $tableBody.querySelectorAll("input[type='checkbox']")
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', (e) => handleCheckbox(e))
+  })
+
+  const botonesEditar = $tableBody.querySelectorAll("td button")
+  botonesEditar.forEach(boton => {
+    boton.addEventListener('click', (e) => handleButtonEditar(e))
+  })
+}
+
+function imprimirData(arrAimprimir) {
+  imprimirListaProductos(arrAimprimir)
+  agregarListenersAbotones()
+  imprimirTablaGastos(itemComprados)
 }
 
 function handleButtonEditar(e) {
-  const itemParaEditar = items.find(item => item.nombre == e.target.id)
+  const itemParaEditar = items.find(item => item.item == e.target.id)
 
-  item.value = itemParaEditar.nombre
-  item.setAttribute("disabled", true)
-  precio.value = itemParaEditar.precio
-  categoria.value = itemParaEditar.categoria
-  almacen.value = itemParaEditar.almacen
-  prioridad.value = itemParaEditar.prioridad
+  $item.value = itemParaEditar.item
+  $item.setAttribute("disabled", true)
+  $precio.value = itemParaEditar.precio
+  $categoria.value = itemParaEditar.categoria
+  $almacen.value = itemParaEditar.almacen
+  $prioridad.value = itemParaEditar.prioridad
 
-  btnCancelar.classList.remove("hidden")
-  btnEliminar.classList.remove("hidden")
+  $btnCancelar.classList.remove("hidden")
+  $btnEliminar.classList.remove("hidden")
 }
 
 function handleButtonCancelar(e) {
@@ -159,97 +173,125 @@ function handleButtonCancelar(e) {
 
 function handleButtonEliminar(e) {
   e.preventDefault()
-  items = items.filter(itemIterado => itemIterado.nombre != item.value)
+  items = items.filter(itemIterado => itemIterado.item != item.value)
 
   updateData()
   imprimirData(items)
   resetFields()
 }
+
 function handleButtonLimpiarTodo() {
   items = []
   itemComprados = []
-  localStorage.setItem('items', JSON.stringify([]))
-  localStorage.setItem('itemComprados', JSON.stringify([]))
-
-  items = JSON.parse(localStorage.getItem('items'))
-  itemComprados = JSON.parse(localStorage.getItem('itemComprados'))
+  updateData()
 
   imprimirData(items)
   resetFields()
 }
+
 function handelButtonValoresIniciales() {
-  items = []
-  itemComprados = []
-  let itemsIniciales = [{
-    nombre: "Jabón",
+  items = [{
+    item: "Jabón",
     precio: 1500,
     categoria: "Aseo",
     almacen: "Ara",
-    prioridad: "Importante",
+    prioridad: "Urgente",
     adquirido: false,
   }, {
-    nombre: "Leche",
+    item: "Leche",
     precio: 21000,
     categoria: "Nevera",
     almacen: "Ara",
-    prioridad: "Importante",
+    prioridad: "Urgente",
     adquirido: false,
   }, {
-    nombre: "Avena",
+    item: "Avena",
     precio: 6500,
     categoria: "Alacena",
     almacen: "Ara",
-    prioridad: "Importante",
+    prioridad: "Urgente",
     adquirido: false,
   }, {
-    nombre: "Jamón",
+    item: "Jamón",
     precio: 12000,
     categoria: "Nevera",
     almacen: "D1",
-    prioridad: "Importante",
+    prioridad: "Urgente",
     adquirido: false,
   }, {
-    nombre: "Bananos",
+    item: "Bananos",
     precio: 8000,
     categoria: "Verduras",
     almacen: "Otro",
     prioridad: "Baja",
     adquirido: false,
   }]
-  let itemCompradosIniciales = []
+  itemComprados = []
 
-
-  localStorage.setItem('items', JSON.stringify(itemsIniciales))
-  localStorage.setItem('itemComprados', JSON.stringify(itemCompradosIniciales))
-
-  items = JSON.parse(localStorage.getItem('items'))
-  itemComprados = JSON.parse(localStorage.getItem('itemComprados'))
-
+  updateData()
   imprimirData(items)
   resetFields()
 }
 
 function resetFields() {
-  item.value = ""
-  item.removeAttribute("disabled")
-  precio.value = ""
-  categoria.value = ""
-  almacen.value = ""
-  prioridad.value = ""
+  $item.value = ""
+  $item.removeAttribute("disabled")
+  $precio.value = ""
+  $categoria.value = ""
+  $almacen.value = ""
+  $prioridad.value = ""
 
-  btnCancelar.classList.add("hidden")
-  btnEliminar.classList.add("hidden")
+  $btnCancelar.classList.add("hidden")
+  $btnEliminar.classList.add("hidden")
 }
 
-function handleBuscar(e){
-  let itemsFiltrados = items.filter((item)=>item.nombre.toLowerCase().includes(e.target.value.toLowerCase()))
- 
+function handleBuscar(e) {
+  let itemsFiltrados = items.filter((item) => item.item.toLowerCase().includes(e.target.value.toLowerCase()))
+
   imprimirData(itemsFiltrados)
 }
 
-btnAgregar.addEventListener('click', (e) => { handleAgregar(e) })
-btnCancelar.addEventListener('click', (e) => handleButtonCancelar(e))
-btnEliminar.addEventListener('click', (e) => handleButtonEliminar(e))
-btnLimpiarTodo.addEventListener('click', (e) => handleButtonLimpiarTodo(e))
-btnReiniciar.addEventListener('click', (e) => handelButtonValoresIniciales(e))
-buscador.addEventListener('keyup', (e)=>handleBuscar(e))
+function handleFiltrar(e) {
+  const columnaAfiltrar = e.target
+  const comparador = columnaAfiltrar.innerText.toLowerCase()
+
+  $filtros.forEach((titulo) => titulo.innerText.toLowerCase() == comparador ? '': titulo.classList.remove('filtrado'))
+
+  if (comparador == '') {
+    return
+  }
+  if (columnaAfiltrar.classList.contains('filtrado')) {
+    columnaAfiltrar.classList.remove('filtrado')
+    columnaAfiltrar.style.setProperty('--after-content', '"\u25BE"');
+    items.sort((a, b) =>
+      typeof a[comparador] == "number" ?
+        (a[comparador] - b[comparador]) :
+        comparador == 'comprado' ?
+          (b.adquirido === a.adquirido) ? 0 :
+            b.adquirido ? -1 : 1 :
+          comparador == 'prioridad' ?
+            a[comparador].localeCompare(b[comparador]) :
+            b[comparador].localeCompare(a[comparador]))
+  } else {
+    columnaAfiltrar.classList.add('filtrado')
+    columnaAfiltrar.style.setProperty('--after-content', '"\u25B4"');
+    items.sort((a, b) =>
+      typeof a[comparador] == "number" ?
+        (b[comparador] - a[comparador]) :
+        comparador == 'comprado' ?
+          (a.adquirido === b.adquirido) ? 0 :
+            a.adquirido ? -1 : 1 :
+          comparador == 'prioridad' ?
+            b[comparador].localeCompare(a[comparador]) :
+            a[comparador].localeCompare(b[comparador]))
+  }
+  imprimirData(items)
+}
+
+$btnAgregar.addEventListener('click', (e) => { handleAgregar(e) })
+$btnCancelar.addEventListener('click', (e) => handleButtonCancelar(e))
+$btnEliminar.addEventListener('click', (e) => handleButtonEliminar(e))
+$btnLimpiarTodo.addEventListener('click', (e) => handleButtonLimpiarTodo(e))
+$btnReiniciar.addEventListener('click', (e) => handelButtonValoresIniciales(e))
+$buscador.addEventListener('keyup', (e) => handleBuscar(e))
+$filtros.forEach(filtro => filtro.addEventListener('click', (e) => handleFiltrar(e)))

@@ -10,62 +10,62 @@
   <main>
     <form action="" class="form form__inputs">
       <h1>Agrega un producto</h1>
-
+  
       <div class="form__alone">
         <label for="item">Item</label>
         <input type="text" name="" id="item">
       </div>
-
+  
       <div class="form__various">
         <div>
-          <label for="precio">Precio</label>
+          <label for="precio" >Precio</label>
           <input type="number" name="" id="precio"> <span></span>
         </div>
-
+  
         <div>
           <label for="categoria">Categoría</label>
           <select required name="categoria" id="categoria">
-            <option hidden value="">--Seleccione--</option>
-            <option value="Nevera">Nevera</option>
-            <option value="Aseo">Aseo</option>
-            <option value="Alacena">Alacena</option>
-            <option value="Verduras">Verduras</option>
+              <option hidden value="">--Seleccione--</option>
+              <option value="Nevera">Nevera</option>
+              <option value="Aseo">Aseo</option>
+              <option value="Alacena">Alacena</option>
+              <option value="Verduras">Verduras</option>
           </select>
         </div>
       </div>
-
+  
       <div class="form__various">
         <div>
           <label for="">Almacén</label>
           <select required name="almacen" id="almacen">
-            <option hidden value="" class="opaco">--Seleccione--</option>
-            <option value="Ara">Ara</option>
-            <option value="D1">D1</option>
-            <option value="Makro">Makro</option>
-            <option value="Otro">Otro</option>
-          </select>
+              <option hidden value="" class="opaco">--Seleccione--</option>
+              <option value="Ara">Ara</option>
+              <option value="D1">D1</option>
+              <option value="Makro">Makro</option>
+              <option value="Otro">Otro</option>
+            </select>
         </div>
-
+  
         <div>
           <label for="prioridad">Prioridad</label>
           <select required name="prioridad" id="prioridad">
-            <option hidden value="">--Seleccione--</option>
-            <option value="Importante">Importante</option>
-            <option value="Media">Media</option>
-            <option value="Baja">Baja</option>
+              <option hidden value="">--Seleccione--</option>
+              <option value="Urgente">Urgente</option>
+              <option value="Media">Media</option>
+              <option value="Baja">Baja</option>
           </select>
         </div>
       </div>
-
+  
       <p id="warning" class="msg msg-error hidden"></p>
-
+  
       <div class="botones-grupo">
         <button type="submit" id="btn-agregar" class="btn btn-agregar">Agregar</button>
         <button type="submit" id="btn-cancelar" class="btn btn-cancelar hidden">Cancelar</button>
         <button type="submit" id="btn-eliminar" class="btn btn-eliminar hidden">Eliminar</button>
       </div>
     </form>
-
+  
     <div id="data">
       <div class="buscador">
         <h2>Lista de productos</h2>
@@ -75,28 +75,28 @@
       </div>
       <table class="tabla__lista-productos">
         <thead>
-          <tr>
+          <tr id="filtros">
             <th class="centered">Comprado</th>
             <th>Item</th>
-            <th>Precio</th>
-            <th>Categoría</th>
-            <th>Almacén</th>
-            <th>Prioridad \</th>
+            <th class="filtro" id="filtro-precio">Precio</th>
+            <th>Categoria</th>
+            <th>Almacen</th>
+            <th id="prioridad-lista">Prioridad</th>
             <th></th>
           </tr>
         </thead>
         <tbody id="tableBody">
-
+  
         </tbody>
       </table>
     </div>
-
+  
     <div class="botones-reinicio">
       <button class="btn btn-eliminar" id="btn-limpiar-todo">Limpiar todo</button>
       <button class="btn" id="btn-reiniciar">Valores iniciales</button>
     </div>
   </main>
-
+  
   <section class="totales">
     <h2>Total gastado</h2>
     <div id="comprados">
@@ -106,12 +106,12 @@
             <th>Item</th>
             <th>Precio</th>
             <th>Categoría</th>
-            <th>Almacén</th>
-            <th>Prioridad</th>
+            <th>Almacen</th>
+            <th> Prioridad</th>
           </tr>
         </thead>
         <tbody id="tableCompradosBody">
-
+  
         </tbody>
         <tfoot class="resultados">
           <td> Total: </td>
